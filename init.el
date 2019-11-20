@@ -28,3 +28,6 @@
 
 ;; store all backup files in a single directory
 (setq backup-directory-alist `(("." . "~/.saves")))
+
+;; Make kill and yank work with the X clipboaard
+(setq x-select-enable-clipboard t)
