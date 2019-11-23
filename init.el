@@ -1,4 +1,5 @@
-(package-initialize)
+
+;; init packages
 
 (require 'package)
 (package-initialize)
@@ -30,13 +31,24 @@
 
 (set-default-font "Sans 18")
 
-(require 'ido)
-(ido-mode t)
+;; (require 'ido)
+;; (ido-mode t)
 
 (global-linum-mode t)
 
 ;; store all backup files in a single directory
-(setq backup-directory-alist `(("." . "~/.saves")))
+;;(setq backup-directory-alist `(("." . "~/.saves")))
+
+(setq backup-directory-alist
+      `(("." . ,(concat user-emacs-directory "backups"))))
 
 ;; Make kill and yank work with the X clipboaard
 (setq x-select-enable-clipboard t)
+
+(setq user-full-name "Kiriakos Naiskes"
+      user-mail-address "kiriakosnaiskes@gmail.com")
+
+;; UTF-8
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
+(prefer-coding-system 'utf-8)
