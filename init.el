@@ -1,4 +1,3 @@
-
 ;; init packages
 
 (require 'package)
@@ -27,7 +26,7 @@
   (blink-cursor-mode -1))
 
 ;; highlight current line
-(global-hl-line-mode t)
+;; (global-hl-line-mode t)
 
 (set-default-font "Sans 18")
 
@@ -52,3 +51,19 @@
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (prefer-coding-system 'utf-8)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes (quote (tango-dark))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+ (require 'whitespace)
+ (setq whitespace-style '(face empty tabs lines-tail trailing))
+ (global-whitespace-mode t)
