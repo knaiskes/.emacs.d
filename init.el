@@ -67,3 +67,7 @@
  (require 'whitespace)
  (setq whitespace-style '(face empty tabs lines-tail trailing))
  (global-whitespace-mode t)
+
+;; Confirm when killing only on graphical session
+(when (window-system)
+  (setq confirm-kill-emacs 'yes-or-no-p))
