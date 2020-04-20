@@ -16,6 +16,8 @@
 
 (setq frame-title-format "emacs")
 
+(setq-default truncate-lines t) ;; stop wrapping long lines in display
+
 ;; do not beep
 (setq ring-bell-function(lambda()))
 
@@ -26,7 +28,7 @@
 ;; highlight current line
 ;; (global-hl-line-mode t)
 
-(set-default-font "Sans 18")
+(set-default-font "Ubuntu Mono-18")
 
 ;; (require 'ido)
 ;; (ido-mode t)
