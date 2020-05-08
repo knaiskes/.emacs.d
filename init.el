@@ -33,7 +33,10 @@
 ;; (require 'ido)
 ;; (ido-mode t)
 
-(global-linum-mode t)
+;; (global-linum-mode t)
+
+(when (version<= "26.0.50" emacs-version)
+  (global-display-line-numbers-mode))
 
 ;; store all backup files in a single directory
 ;;(setq backup-directory-alist `(("." . "~/.saves")))
@@ -52,6 +55,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(display-line-numbers-type (quote relative))
  '(custom-enabled-themes (quote (wombat)))
  '(package-selected-packages
    (quote
@@ -62,6 +66,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
 
  (require 'whitespace)
  (setq whitespace-style '(face empty tabs lines-tail trailing))
