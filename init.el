@@ -65,7 +65,7 @@
  '(display-line-numbers-type (quote relative))
  '(package-selected-packages
    (quote
-    (yasnippet haskell-mode js2-mode markdown-mode web-mode php-mode go-mode))))
+    (yaml-mode yasnippet haskell-mode js2-mode markdown-mode web-mode php-mode go-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -89,3 +89,7 @@
 
 
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c++-mode))
+
+(add-hook 'yaml-mode-hook
+          (lambda ()
+            (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
