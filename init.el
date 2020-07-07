@@ -93,3 +93,10 @@
 (add-hook 'yaml-mode-hook
           (lambda ()
             (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
+
+
+(add-hook 'go-mode-hook
+          (lambda ()
+            (add-hook 'before-save-hook 'gofmt-before-save)
+            (setq tab-width 4)
+            (setq indent-tabs-mode 1)))
