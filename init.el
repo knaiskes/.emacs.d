@@ -28,7 +28,7 @@
 ;; highlight current line
 ;; (global-hl-line-mode t)
 
-(set-default-font "Ubuntu Mono-18")
+(set-frame-font "Ubuntu Mono-18")
 
 ;; (require 'ido)
 ;; (ido-mode t)
