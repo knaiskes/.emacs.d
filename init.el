@@ -1,11 +1,16 @@
 ;; init packages
 
 (require 'package)
-(package-initialize)
+;;(package-initialize)
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("melpa-stable" . "https://stable.melpa.org/packages/")
                          ("gnu" . "https://elpa.gnu.org/packages/")))
+
+(package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
+(package-install-selected-packages)
 
 (setq inhibit-startup-screen t)
 (menu-bar-mode 0)
@@ -35,12 +40,6 @@
 
 ;; (global-linum-mode t)
 
-;;; yasnippet
-(require 'yasnippet)
-
-(setq yas/triggers-in-field nil)
-(setq yas-snippet-dirs '("~/.emacs.d/snippets"))
-(yas-global-mode 1)
 (when (version<= "26.0.50" emacs-version)
   (global-display-line-numbers-mode))
 
@@ -81,6 +80,12 @@
 (when (window-system)
   (setq confirm-kill-emacs 'yes-or-no-p))
 
+;;; yasnippet
+(require 'yasnippet)
+
+(setq yas/triggers-in-field nil)
+(setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+(yas-global-mode 1)
 
 ;;; js2
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
