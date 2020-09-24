@@ -71,7 +71,7 @@
  '(custom-enabled-themes '(wombat))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(typescript-mode dockerfile-mode scala-mode yaml-mode yasnippet haskell-mode js2-mode markdown-mode web-mode php-mode go-mode)))
+   '(rjsx-mode typescript-mode dockerfile-mode scala-mode yaml-mode yasnippet haskell-mode js2-mode markdown-mode web-mode php-mode go-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -102,6 +102,9 @@
 ;;; js2
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
+
+;;JSX
+(add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
 
 
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c++-mode))
