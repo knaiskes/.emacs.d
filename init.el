@@ -35,6 +35,19 @@
 
 ;; (global-linum-mode t)
 
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
+(prefer-coding-system 'utf-8)
+
+;; Delete selected region on typing
+(delete-selection-mode t)
+
+;; Ignore case in file name completion
+(setq read-file-name-completion-ignore-case t)
+
+;; y or n should suffice
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 (when (version<= "26.0.50" emacs-version)
   (global-display-line-numbers-mode))
 
