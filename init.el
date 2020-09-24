@@ -99,7 +99,7 @@
 (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 (yas-global-mode 1)
 
-;;; js2
+;;; js
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
 (add-to-list 'interpreter-mode-alist '("node" . js-mode))
 
