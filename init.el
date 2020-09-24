@@ -7,11 +7,6 @@
                          ("melpa-stable" . "https://stable.melpa.org/packages/")
                          ("gnu" . "https://elpa.gnu.org/packages/")))
 
-(package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
-(package-install-selected-packages)
-
 (setq inhibit-startup-screen t)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
@@ -71,6 +66,10 @@
  ;; If there is more than one, they won't work right.
  )
 
+(package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
+(package-install-selected-packages)
 
  (require 'whitespace)
  (setq whitespace-style '(face empty tabs lines-tail trailing))
