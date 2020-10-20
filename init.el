@@ -71,7 +71,7 @@
  '(custom-enabled-themes '(wombat))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(typescript-mode dockerfile-mode scala-mode yaml-mode yasnippet haskell-mode markdown-mode web-mode php-mode go-mode)))
+   '(flycheck typescript-mode dockerfile-mode scala-mode yaml-mode yasnippet haskell-mode markdown-mode web-mode php-mode go-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -119,3 +119,5 @@
             (add-hook 'before-save-hook 'gofmt-before-save)
             (setq tab-width 4)
             (setq indent-tabs-mode 1)))
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
