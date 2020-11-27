@@ -109,6 +109,9 @@
 
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c++-mode))
 
+;;tsx
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+
 (add-hook 'yaml-mode-hook
           (lambda ()
             (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
