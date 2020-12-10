@@ -54,6 +54,9 @@
 ;; store all backup files in a single directory
 ;;(setq backup-directory-alist `(("." . "~/.saves")))
 
+;; Don't create lock files as it breaks React's development server
+(setq create-lockfiles nil)
+
 (setq backup-directory-alist
       `(("." . ,(concat user-emacs-directory "backups"))))
 
