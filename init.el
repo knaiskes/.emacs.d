@@ -74,7 +74,7 @@
  '(custom-enabled-themes '(wombat))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(dart-mode json-mode magit flycheck typescript-mode dockerfile-mode scala-mode yaml-mode yasnippet haskell-mode markdown-mode web-mode php-mode go-mode)))
+   '(company dart-mode json-mode magit flycheck typescript-mode dockerfile-mode scala-mode yaml-mode yasnippet haskell-mode markdown-mode web-mode php-mode go-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -127,3 +127,6 @@
             (setq indent-tabs-mode 1)))
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; Enable company-mode in all buffers
+(add-hook 'after-init-hook 'global-company-mode)
