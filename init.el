@@ -66,12 +66,22 @@
 (setq user-full-name "Kiriakos Naiskes"
       user-mail-address "kiriakosnaiskes@gmail.com")
 
+;; Config for the modus themes
+(setq modus-themes-mode-line '(accented borderless padded))
+(setq modus-themes-region '(bg-only))
+(setq modus-themes-bold-constructs t)
+(setq modus-themes-italic-constructs t)
+(setq modus-themes-paren-match '(bold intense underline))
+;(setq modus-themes-syntax '(faint))
+(setq modus-themes-syntax '(alt-syntax))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(wombat))
+ '(custom-enabled-themes '(modus-vivendi))
+
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
    '(company dart-mode json-mode magit flycheck typescript-mode dockerfile-mode scala-mode yaml-mode yasnippet haskell-mode markdown-mode web-mode php-mode go-mode)))
