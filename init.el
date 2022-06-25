@@ -84,13 +84,7 @@
 
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(company dart-mode json-mode magit flycheck typescript-mode dockerfile-mode scala-mode yaml-mode yasnippet haskell-mode markdown-mode web-mode php-mode go-mode)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+   '(company json-mode magit flycheck typescript-mode dockerfile-mode yaml-mode yasnippet markdown-mode web-mode go-mode)))
 
 (package-initialize)
 (unless package-archive-contents
