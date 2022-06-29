@@ -84,7 +84,7 @@
 
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(company json-mode magit flycheck typescript-mode dockerfile-mode yaml-mode yasnippet markdown-mode web-mode go-mode)))
+   '(lsp-mode company json-mode magit flycheck typescript-mode dockerfile-mode yaml-mode yasnippet markdown-mode web-mode go-mode)))
 
 (package-initialize)
 (unless package-archive-contents
@@ -137,3 +137,9 @@
 
 (electric-pair-mode 1)
 (setq electric-pair-preserve-balance nil)
+
+;; lsp-mode
+(require 'lsp-mode)
+(add-hook 'js-mode-hook #'lsp)
+(setq lsp-keymap-prefix "C-c l")
+(define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
