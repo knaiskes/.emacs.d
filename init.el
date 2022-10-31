@@ -117,6 +117,7 @@
 
 ;;tsx
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
 
 (add-hook 'yaml-mode-hook
           (lambda ()
@@ -140,6 +141,7 @@
 ;; lsp-mode
 (require 'lsp-mode)
 (add-hook 'js-mode-hook #'lsp)
+(add-hook 'typescript-mode-hook #'lsp)
 (add-hook 'python-mode-hook #'lsp)
 (setq lsp-keymap-prefix "C-c l")
 (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
