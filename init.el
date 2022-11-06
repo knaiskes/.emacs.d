@@ -85,6 +85,9 @@
  '(package-selected-packages
    '(rust-mode lsp-mode company json-mode magit flycheck typescript-mode dockerfile-mode yaml-mode yasnippet markdown-mode web-mode go-mode)))
 
+;; Set cursor color
+(set-cursor-color "#F35336")
+
 (package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
@@ -131,6 +134,7 @@
             (setq indent-tabs-mode 1)))
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
 
 ;; Enable company-mode in all buffers
 (add-hook 'after-init-hook 'global-company-mode)
