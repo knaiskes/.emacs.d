@@ -83,7 +83,7 @@
  '(custom-enabled-themes '(modus-vivendi))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(rust-mode lsp-mode company json-mode magit flycheck typescript-mode dockerfile-mode yaml-mode yasnippet markdown-mode web-mode go-mode)))
+   '(terraform-mode rust-mode lsp-mode company json-mode magit flycheck typescript-mode dockerfile-mode yaml-mode yasnippet markdown-mode web-mode go-mode)))
 
 ;; Set cursor color
 (set-cursor-color "#F35336")
