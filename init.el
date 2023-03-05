@@ -83,7 +83,7 @@
  '(custom-enabled-themes '(modus-vivendi))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(terraform-mode rust-mode lsp-mode company json-mode magit flycheck typescript-mode dockerfile-mode yaml-mode yasnippet markdown-mode web-mode go-mode)))
+   '(rjsx-mode terraform-mode rust-mode lsp-mode company json-mode magit flycheck typescript-mode dockerfile-mode yaml-mode yasnippet markdown-mode web-mode go-mode)))
 
 ;; Set cursor color
 (set-cursor-color "#F35336")
@@ -157,3 +157,6 @@
  )
 
 (global-auto-revert-mode t) ;; auto refresh buffers
+
+(add-hook 'text-mode-hook #'auto-fill-mode)
+(setq-default fill-column 80)
