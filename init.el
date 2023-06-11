@@ -150,3 +150,5 @@
 
 (add-hook 'text-mode-hook #'auto-fill-mode)
 (setq-default fill-column 80)
+
+(setq isearch-lazy-count t)
