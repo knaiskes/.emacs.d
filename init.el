@@ -145,6 +145,7 @@
 ;; eglot
 (add-hook 'js-mode-hook 'eglot-ensure)
 (add-hook 'typescript-mode-hook 'eglot-ensure)
+(add-hook 'go-mode-hook 'eglot-ensure)
 
 (global-auto-revert-mode t) ;; auto refresh buffers
 
