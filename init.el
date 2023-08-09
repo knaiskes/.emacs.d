@@ -52,6 +52,10 @@
 ;; Don't create lock files as it breaks React's development server
 (setq create-lockfiles nil)
 
+;; Enable pair mode
+(electric-pair-mode 1)
+(setq electric-pair-preserve-balance nil)
+
 ;; Save all the backup files to .emacs.d/backups directory
 (setq backup-directory-alist
       `(("." . ,(concat user-emacs-directory "backups"))))
@@ -69,13 +73,58 @@
 (setq custom-file (make-temp-file "emacs-custom"))
 (setq-default custom-file nil)
 
+;; Enable search counter
+(setq isearch-lazy-count t)
+
 (custom-set-variables
  '(custom-enabled-themes '(modus-vivendi))
- '(display-line-numbers-type 'relative)
- '(package-selected-packages '(magit)))
+ '(display-line-numbers-type 'relative))
+
+;; Define the package configurations
+(use-package rjsx-mode :ensure t)
+(use-package terraform-mode :ensure t)
+(use-package json-mode :ensure t)
+(use-package magit :ensure t)
+(use-package typescript-mode :ensure t)
+(use-package dockerfile-mode :ensure t)
+(use-package yaml-mode :ensure t)
+(use-package markdown-mode :ensure t)
+(use-package web-mode :ensure t)
+(use-package go-mode :ensure t)
 
 
 ;; Magit config
 (use-package magit
   :ensure t
   :commands magit-status)
+
+;; Eglot
+(use-package eglot
+  :ensure t
+  :hook ((js-mode . eglot-ensure)
+         (typescript-mode . eglot-ensure)
+	 (go-mode . eglot-ensure)))
+
+;; JavaScript and TypeScript modes
+(use-package js
+  :mode ("\\.js\\'" . js-mode)
+  :init
+  (add-to-list 'interpreter-mode-alist '("node" . js-mode))
+  (add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . js-jsx-mode))
+  (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode)))
+
+;; C++ mode for .ino files
+(use-package cc-mode
+  :mode ("\\.ino\\'" . c++-mode))
+
+;; Company mode
+(use-package company
+  :ensure t
+  :config
+  (add-hook 'after-init-hook 'global-company-mode))
+
+;; Set cursor color
+(set-cursor-color "#F35336")
+
+;; Auto refresh buffers on change
+(global-auto-revert-mode t)
