@@ -36,6 +36,8 @@
 (when(functionp 'blink-cursor-mode)
   (blink-cursor-mode -1))
 
+(setq pixel-scroll-precision-mode 1)
+
 ;; Delete selected region on typing
 (delete-selection-mode t)
 
@@ -58,7 +60,7 @@
 
 ;; Save all the backup files to .emacs.d/backups directory
 (setq backup-directory-alist
-      `(("." . ,(concat user-emacs-directory "backups"))))
+      `((".*" . ,(concat user-emacs-directory "backups"))))
 
 ;; Use UTF-8
 (set-language-environment "UTF-8")
@@ -77,8 +79,14 @@
 (setq isearch-lazy-count t)
 
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(custom-enabled-themes '(modus-vivendi))
- '(display-line-numbers-type 'relative))
+ '(display-line-numbers-type 'relative)
+ '(package-selected-packages
+   '(python-mode yaml-mode web-mode typescript-mode terraform-mode rjsx-mode markdown-mode magit json-mode go-mode dockerfile-mode company)))
 
 ;; Define the package configurations
 (use-package rjsx-mode :ensure t)
@@ -91,6 +99,7 @@
 (use-package markdown-mode :ensure t)
 (use-package web-mode :ensure t)
 (use-package go-mode :ensure t)
+(use-package python-mode :ensure t)
 
 
 ;; Magit config
@@ -128,3 +137,9 @@
 
 ;; Auto refresh buffers on change
 (global-auto-revert-mode t)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
