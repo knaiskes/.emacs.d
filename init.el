@@ -30,6 +30,9 @@
 
 (set-frame-font "Ubuntu Mono-18")
 
+;; Enable pixel scroll
+(setq pixel-scroll-precision-mode 1)
+
 ;; (require 'ido)
 ;; (ido-mode t)
 
