@@ -88,6 +88,10 @@
  '(package-selected-packages
    '(python-mode yaml-mode web-mode typescript-mode terraform-mode rjsx-mode markdown-mode magit json-mode go-mode dockerfile-mode company)))
 
+
+(setq js-indent-level 2)
+
+
 ;; Define the package configurations
 (use-package rjsx-mode :ensure t)
 (use-package terraform-mode :ensure t)
