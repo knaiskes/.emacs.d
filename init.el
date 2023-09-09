@@ -1,11 +1,7 @@
-;; init packages
-(require 'package)
-
-;;(package-initialize)
+;; Package sources
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("melpa-stable" . "https://stable.melpa.org/packages/")
                          ("gnu" . "https://elpa.gnu.org/packages/")))
-
 
 ;; Set my fullname and email address
 (setq user-full-name "Kiriakos Naiskes"
@@ -17,9 +13,15 @@
 (tool-bar-mode 0)
 (toggle-scroll-bar -1)
 
-(setq x-select-enable-cliboard t)
-
+;; Set font
 (set-frame-font "Ubuntu Mono-18")
+
+;; Stop cursor from blinking
+(when(functionp 'blink-cursor-mode)
+  (blink-cursor-mode -1))
+
+;; Stop wrapping long lines in display
+(setq-default truncate-lines t)
 
 ;; Config for the modus themes
 (setq modus-themes-mode-line '(accented borderless padded))
@@ -29,47 +31,33 @@
 (setq modus-themes-paren-match '(bold intense underline))
 (setq modus-themes-syntax '(alt-syntax))
 
-;; Stop wrapping long lines in display
-(setq-default truncate-lines t)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes '(modus-vivendi))
+ '(display-line-numbers-type 'relative)
+ '(package-selected-packages '(company magit json-mode)))
 
-;; Stop cursor from blinking
-(when(functionp 'blink-cursor-mode)
-  (blink-cursor-mode -1))
+;; Set cursor color
+(set-cursor-color "#F35336")
 
-(setq pixel-scroll-precision-mode 1)
-
-;; Delete selected region on typing
-(delete-selection-mode t)
+;; Enable cliboard for cutting and pasting
+(setq x-select-enable-cliboard t)
 
 ;; Ignore case in file name completion
 (setq read-file-name-completion-ignore-case t)
 
+;; Delete selected region on typing
+(delete-selection-mode t)
+
 ;; y or n should suffice
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-;; Show relative line number
-(when (version<= "26.0.50" emacs-version)
-  (global-display-line-numbers-mode))
-
-;; Don't create lock files as it breaks React's development server
-(setq create-lockfiles nil)
-
 ;; Enable pair mode
 (electric-pair-mode 1)
-(setq electric-pair-preserve-balance nil)
-
-;; Save all the backup files to .emacs.d/backups directory
-(setq backup-directory-alist
-      `((".*" . ,(concat user-emacs-directory "backups"))))
-
-;; Use UTF-8
-(set-language-environment "UTF-8")
-(set-default-coding-systems 'utf-8)
-(prefer-coding-system 'utf-8)
-
-;; Confirm when killing graphical session
-(when (window-system)
-  (setq confirm-kill-emacs 'yes-or-no-p))
+;;(setq electric-pair-preserve-balance nil)
 
 ;; Disable custom comments
 (setq custom-file (make-temp-file "emacs-custom"))
@@ -78,72 +66,105 @@
 ;; Enable search counter
 (setq isearch-lazy-count t)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(modus-vivendi))
- '(display-line-numbers-type 'relative)
- '(package-selected-packages
-   '(python-mode yaml-mode web-mode typescript-mode terraform-mode rjsx-mode markdown-mode magit json-mode go-mode dockerfile-mode company)))
+;; Show line number
+(global-display-line-numbers-mode)
 
+;; Save all the backup files to .emacs.d/backups directory
+(setq backup-directory-alist
+      `((".*" . ,(concat user-emacs-directory "backups"))))
 
-(setq js-indent-level 2)
+;; Confirm when killing graphical session
+(when (window-system)
+  (setq confirm-kill-emacs 'yes-or-no-p))
 
+;; Use UTF-8
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
+(prefer-coding-system 'utf-8)
 
-;; Define the package configurations
-(use-package rjsx-mode :ensure t)
-(use-package terraform-mode :ensure t)
-(use-package json-mode :ensure t)
-(use-package magit :ensure t)
-(use-package typescript-mode :ensure t)
-(use-package dockerfile-mode :ensure t)
-(use-package yaml-mode :ensure t)
-(use-package markdown-mode :ensure t)
-(use-package web-mode :ensure t)
-(use-package go-mode :ensure t)
-(use-package python-mode :ensure t)
+;; Disable custom comments
+(setq custom-file (make-temp-file "emacs-custom"))
+(setq-default custom-file nil)
 
+;; Auto refresh buffers on change
+(global-auto-revert-mode t)
+
+;; Settings for treesit
+(use-package treesit
+  :commands (treesit-install-language-grammar nf/treesit-install-all-languages)
+  :init
+  (setq treesit-language-source-alist
+   '((go . ("https://github.com/tree-sitter/tree-sitter-go"))
+     (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript"))
+     (json . ("https://github.com/tree-sitter/tree-sitter-json"))
+     (python . ("https://github.com/tree-sitter/tree-sitter-python"))
+     (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src"))
+     (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
+     (sql . ("https://github.com/m-novikov/tree-sitter-sql"))))
+  :config
+  (defun nf/treesit-install-all-languages ()
+    "Install all languages specified by `treesit-language-source-alist'."
+    (interactive)
+    (let ((languages (mapcar 'car treesit-language-source-alist)))
+      (dolist (lang languages)
+	      (treesit-install-language-grammar lang)
+	      (message "`%s' parser was installed." lang)
+	      (sit-for 0.75)))))
+
+  (dolist  (mapping '((python-mode . python-ts-mode)
+		      (js-mode . js-ts-mode)
+		      (javascript-mode . js-ts-mode)
+		      (typescript-mode . tsx-ts-mode)
+		      (js-json-mode . json-ts-mode)))
+    (add-to-list 'major-mode-remap-alist mapping))
+
+;; Use C++ mode for .ino files
+(use-package cc-mode
+  :mode ("\\.ino\\'" . c++-mode))
+
+;; Configure JSON mode
+(use-package json-mode
+  :ensure t
+  :mode ("\\.json\\'" . json-mode)
+  :config
+  (setq js-indent-level 2))
 
 ;; Magit config
 (use-package magit
   :ensure t
   :commands magit-status)
 
-;; Eglot
-(use-package eglot
-  :ensure t
-  :hook ((js-mode . eglot-ensure)
-         (typescript-mode . eglot-ensure)
-	 (go-mode . eglot-ensure)))
-
-;; JavaScript and TypeScript modes
-(use-package js
-  :mode ("\\.js\\'" . js-mode)
-  :init
-  (add-to-list 'interpreter-mode-alist '("node" . js-mode))
-  (add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . js-jsx-mode))
-  (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode)))
-
-;; C++ mode for .ino files
-(use-package cc-mode
-  :mode ("\\.ino\\'" . c++-mode))
-
-;; Company mode
+;; Company mode config
 (use-package company
   :ensure t
   :config
-  (add-hook 'after-init-hook 'global-company-mode))
+  (setq company-idle-delay 0.1
+	company-minimum-prefix-length 1))
 
-;; Set cursor color
-(set-cursor-color "#F35336")
+;; JavaScript mode (treesitter)
+(use-package javascript-ts-mode
+  :hook ((js-ts-mode . eglot-ensure)
+	 (js-ts-mode . company-mode))
+  :mode (("\\.js\\'" . js-ts-mode)))
 
-;; Auto refresh buffers on change
-(global-auto-revert-mode t)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(use-package typescript-ts-mode
+  :hook ((typescript-ts-mode . eglot-ensure)
+	 (typescript-ts-mode . company-mode))
+  :mode (("\\.ts\\'" . typescript-ts-mode)))
+
+
+;; GoLang mode (treesitter)
+(use-package go-mode
+  :hook ((go-ts-mode . eglot-ensure)
+	 (go-ts-mode . company-mode))
+  :mode (("\\.go\\'" . go-ts-mode)))
+
+;; Configure Eglot mode
+(use-package eglot
+  :bind (:map eglot-mode-map
+	      ("C-c d" . eldoc)
+	      ("C-c a" . eglot-code-actions)
+	      ("C-c r" . eglot-rename)))
+
+;; Enable pixel scroll
+(setq pixel-scroll-precision-mode 1)
