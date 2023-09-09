@@ -38,7 +38,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes '(modus-vivendi))
  '(display-line-numbers-type 'relative)
- '(package-selected-packages '(company magit json-mode)))
+ '(package-selected-packages '(markdown-mode company magit json-mode)))
 
 ;; Set cursor color
 (set-cursor-color "#F35336")
@@ -165,6 +165,12 @@
 	      ("C-c d" . eldoc)
 	      ("C-c a" . eglot-code-actions)
 	      ("C-c r" . eglot-rename)))
+
+;; Configure Markdown mode
+(use-package markdown-mode
+  :ensure t
+  :hook ((markdown-mode . company-mode))
+  :mode ("\\.md\\'" . markdown-mode))
 
 ;; Enable pixel scroll
 (setq pixel-scroll-precision-mode 1)
