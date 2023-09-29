@@ -14,7 +14,7 @@
 (toggle-scroll-bar -1)
 
 ;; Set font
-(set-frame-font "Ubuntu Mono-18")
+;;(set-frame-font "Ubuntu Mono-18")
 
 ;; Stop cursor from blinking
 (when(functionp 'blink-cursor-mode)
@@ -38,7 +38,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes '(modus-vivendi))
  '(display-line-numbers-type 'relative)
- '(package-selected-packages '(markdown-mode company magit json-mode)))
+ '(package-selected-packages '(yaml-mode markdown-mode company magit json-mode)))
 
 ;; Set cursor color
 (set-cursor-color "#F35336")
@@ -173,5 +173,15 @@
   :hook ((markdown-mode . company-mode))
   :mode ("\\.md\\'" . markdown-mode))
 
+;; Install yaml-mode
+(use-package yaml-mode
+  :ensure t)
+
 ;; Enable pixel scroll
 (setq pixel-scroll-precision-mode 1)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
