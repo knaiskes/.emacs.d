@@ -112,8 +112,7 @@
 	      (message "`%s' parser was installed." lang)
 	      (sit-for 0.75)))))
 
-  (dolist  (mapping '((python-mode . python-ts-mode)
-		      (js-mode . js-ts-mode)
+  (dolist  (mapping '((js-mode . js-ts-mode)
 		      (javascript-mode . js-ts-mode)
 		      (typescript-mode . tsx-ts-mode)
 		      (js-json-mode . json-ts-mode)))
