@@ -90,6 +90,13 @@
 ;; Auto refresh buffers on change
 (global-auto-revert-mode t)
 
+;; Enable winner-mode
+(winner-mode 1)
+
+(global-set-key (kbd "<C-s-right>") 'winner-redo)
+(global-set-key (kbd "<C-s-left>") 'winner-undo)
+
+
 ;; Settings for treesit
 (use-package treesit
   :commands (treesit-install-language-grammar nf/treesit-install-all-languages)
