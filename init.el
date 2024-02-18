@@ -38,6 +38,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes '(modus-vivendi))
  '(display-line-numbers-type 'relative)
+ '(js-indent-level 2)
  '(package-selected-packages '(yaml-mode markdown-mode company magit json-mode)))
 
 ;; Set cursor color
@@ -145,7 +146,9 @@
 (use-package javascript-ts-mode
   :hook ((js-ts-mode . eglot-ensure)
 	 (js-ts-mode . company-mode))
-  :mode (("\\.js\\'" . js-ts-mode)))
+  :mode (("\\.js\\'" . js-ts-mode))
+  :config
+  (setq-default js-indent-level 2))
 
 (use-package typescript-ts-mode
   :hook ((typescript-ts-mode . eglot-ensure)
