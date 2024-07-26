@@ -140,7 +140,9 @@
 ;; Magit config
 (use-package magit
   :ensure t
-  :commands magit-status)
+  :commands magit-status
+  :config
+  (setq magit-diff-refine-hunk (quote all)))
 
 ;; Company mode config
 (use-package company
