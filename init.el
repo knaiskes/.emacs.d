@@ -39,7 +39,8 @@
  '(custom-enabled-themes '(modus-vivendi))
  '(display-line-numbers-type 'relative)
  '(js-indent-level 2)
- '(package-selected-packages '(yaml-mode markdown-mode company magit json-mode)))
+ '(package-selected-packages
+   '(terraform-mode yaml-mode markdown-mode company magit json-mode)))
 
 ;; Set cursor color
 (set-cursor-color "#F35336")
