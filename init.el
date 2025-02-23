@@ -167,12 +167,13 @@
 
 
 ;; GoLang mode (treesitter)
-(use-package go-mode
+(use-package go-ts-mode
   :hook ((go-ts-mode . eglot-ensure)
          (go-ts-mode . company-mode)
-         (go-ts-mode . (lambda () (add-hook 'before-save-hook #'gofmt-before-save nil t))))
-  :mode (("\\.go\\'" . go-ts-mode))
-  :init (setq go-ts-mode-indent-offset 4))
+         (go-ts-mode . (lambda ()
+                         (setq-local tab-width 8)  ;; Set correct indentation
+                         (add-hook 'before-save-hook #'eglot-format-buffer nil t))))
+  :mode ("\\.go\\'" . go-ts-mode))
 
 ;; Configure Eglot mode
 (use-package eglot
