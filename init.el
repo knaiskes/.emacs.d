@@ -141,6 +141,7 @@
 ;; Magit config
 (use-package magit
   :ensure t
+  :hook (git-commit-mode . company-mode)
   :commands magit-status
   :config
   (setq magit-diff-refine-hunk (quote all)))
