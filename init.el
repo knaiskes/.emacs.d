@@ -110,7 +110,8 @@
      (python . ("https://github.com/tree-sitter/tree-sitter-python"))
      (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src"))
      (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
-     (sql . ("https://github.com/m-novikov/tree-sitter-sql"))))
+     (sql . ("https://github.com/m-novikov/tree-sitter-sql"))
+     (python . ("https://github.com/tree-sitter/tree-sitter-python"))))
   :config
   (defun nf/treesit-install-all-languages ()
     "Install all languages specified by `treesit-language-source-alist'."
@@ -192,6 +193,12 @@
 ;; Install yaml-mode
 (use-package yaml-mode
   :ensure t)
+
+(use-package python
+  :ensure nil
+  :hook ((python-ts-mode . eglot-ensure)
+         (python-ts-mode . company-mode))
+  :mode (("\\.py\\'" . python-ts-mode)))
 
 ;; Enable pixel scroll
 (setq pixel-scroll-precision-mode 1)
