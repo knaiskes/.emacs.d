@@ -211,3 +211,5 @@
 
 (setq tramp-histfile-override nil)
 (setq explicit-shell-file-name "/bin/bash")
+
+(which-key-mode 1)
