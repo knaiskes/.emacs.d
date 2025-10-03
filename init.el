@@ -167,6 +167,15 @@
 	 (typescript-ts-mode . company-mode))
   :mode (("\\.ts\\'" . typescript-ts-mode)))
 
+;; TSX mode (treesitter)
+;; Configure JSON mode
+(use-package json-mode
+  :ensure t
+  :mode ("\\.tsx\\'" . tsx-ts-mode)
+  :hook ((tsx-ts-mode . eglot-ensure)
+	 (tsx-ts-mode . company-mode))
+  :config)
+
 
 ;; GoLang mode (treesitter)
 (use-package go-ts-mode
