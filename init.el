@@ -103,15 +103,15 @@
   :commands (treesit-install-language-grammar nf/treesit-install-all-languages)
   :init
   (setq treesit-language-source-alist
-   '((go . ("https://github.com/tree-sitter/tree-sitter-go"))
-     (gomod "https://github.com/camdencheek/tree-sitter-go-mod")
-     (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript"))
-     (json . ("https://github.com/tree-sitter/tree-sitter-json"))
-     (python . ("https://github.com/tree-sitter/tree-sitter-python"))
-     (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src"))
-     (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
-     (sql . ("https://github.com/m-novikov/tree-sitter-sql"))
-     (python . ("https://github.com/tree-sitter/tree-sitter-python"))))
+	'((go          "https://github.com/tree-sitter/tree-sitter-go")
+          (gomod       "https://github.com/camdencheek/tree-sitter-go-mod")
+          (javascript  "https://github.com/tree-sitter/tree-sitter-javascript")
+          (json        "https://github.com/tree-sitter/tree-sitter-json")
+          (python      "https://github.com/tree-sitter/tree-sitter-python")
+          (typescript  "https://github.com/tree-sitter/tree-sitter-typescript" "typescript/src")
+          (tsx         "https://github.com/tree-sitter/tree-sitter-typescript" "tsx/src")
+          (sql         "https://github.com/m-novikov/tree-sitter-sql")))
+
   :config
   (defun nf/treesit-install-all-languages ()
     "Install all languages specified by `treesit-language-source-alist'."
