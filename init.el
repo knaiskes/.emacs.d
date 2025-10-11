@@ -176,6 +176,8 @@
 	 (tsx-ts-mode . company-mode))
   :config)
 
+(use-package js-mode
+  :mode ("\\.mjs\\'" . js-mode))
 
 ;; GoLang mode (treesitter)
 (use-package go-ts-mode
