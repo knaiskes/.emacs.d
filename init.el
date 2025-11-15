@@ -145,7 +145,19 @@
   :hook (git-commit-mode . company-mode)
   :commands magit-status
   :config
-  (setq magit-diff-refine-hunk (quote all)))
+  (setq magit-diff-refine-hunk 'all)
+
+  (defun my/magit-confirm-push-to-main-master (orig-fun &rest args)
+    "Ask for confirmation when pushing to master or main."
+    (let ((branch (magit-get-current-branch)))
+      (if (and branch (member branch '("master" "main")))
+          (when (yes-or-no-p (format "Pushing to %s. Continue? " branch))
+            (apply orig-fun args))
+        (apply orig-fun args))))
+
+  (advice-add 'magit-push-current-to-pushremote :around #'my/magit-confirm-push-to-main-master)
+  (advice-add 'magit-push-current :around #'my/magit-confirm-push-to-main-master)
+  (advice-add 'magit-push :around #'my/magit-confirm-push-to-main-master))
 
 ;; Company mode config
 (use-package company
