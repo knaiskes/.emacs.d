@@ -193,11 +193,12 @@
 
 ;; GoLang mode (treesitter)
 (use-package go-ts-mode
-  :hook ((go-ts-mode . eglot-ensure)
-         (go-ts-mode . company-mode)
-         (go-ts-mode . (lambda ()
-                         (setq-local tab-width 8)  ;; Set correct indentation
-                         (add-hook 'before-save-hook #'eglot-format-buffer nil t))))
+  :hook ((go-ts-mode . (lambda ()
+                         (when (locate-dominating-file default-directory "go.mod")
+                           (eglot-ensure))
+                         (setq-local tab-width 8)
+                         (add-hook 'before-save-hook #'eglot-format-buffer nil t)))
+         (go-ts-mode . company-mode))
   :mode ("\\.go\\'" . go-ts-mode))
 
 ;; Configure Eglot mode
