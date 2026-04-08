@@ -13,8 +13,7 @@
 (tool-bar-mode 0)
 (toggle-scroll-bar -1)
 
-;; Set font
-;;(set-frame-font "Ubuntu Mono-18")
+(set-face-attribute 'default nil :height 200)
 
 ;; Stop cursor from blinking
 (when(functionp 'blink-cursor-mode)
@@ -32,10 +31,6 @@
 (setq modus-themes-syntax '(alt-syntax))
 
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(custom-enabled-themes '(modus-vivendi))
  '(display-line-numbers-type 'relative)
  '(js-indent-level 2)
@@ -96,7 +91,6 @@
 
 (global-set-key (kbd "<C-s-right>") 'winner-redo)
 (global-set-key (kbd "<C-s-left>") 'winner-undo)
-
 
 ;; Settings for treesit
 (use-package treesit
@@ -227,10 +221,6 @@
 ;; Enable pixel scroll
 (setq pixel-scroll-precision-mode 1)
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  )
 
 (setq tramp-histfile-override nil)
