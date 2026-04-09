@@ -41,7 +41,7 @@
 (set-cursor-color "#F35336")
 
 ;; Enable cliboard for cutting and pasting
-(setq x-select-enable-cliboard t)
+(setq x-select-enable-clipboard t)
 
 ;; Ignore case in file name completion
 (setq read-file-name-completion-ignore-case t)
