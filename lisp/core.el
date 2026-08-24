@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (setq custom-file (make-temp-file "emacs-custom"))
 
 (set-language-environment "UTF-8")

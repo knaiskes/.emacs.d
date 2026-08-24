@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (setq gc-cons-threshold (* 128 1024 1024))
 (add-hook 'emacs-startup-hook
           (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
