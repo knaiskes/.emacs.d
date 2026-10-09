@@ -3,21 +3,22 @@
 (use-package magit
   :ensure t
   :commands magit-status
-  :hook (git-commit-mode . company-mode)
-  :custom
-  (magit-diff-refine-hunk 'all)
   :config
+  (defvar my/magit-protected-branches '("main" "master")
+    "Branches that require confirmation before pushing.")
+
   (defun my/magit-confirm-push-to-main (orig-fun &rest args)
-    "Ask for confirmation before pushing to main or master."
+    "Ask for confirmation before pushing from a protected branch."
     (let ((branch (magit-get-current-branch)))
-      (if (and branch (member branch '("master" "main")))
-          (when (yes-or-no-p (format "Pushing to %s. Continue? " branch))
-            (apply orig-fun args))
-        (apply orig-fun args))))
+      (if (or (not (member branch my/magit-protected-branches))
+              (yes-or-no-p (format "Pushing to %s. Continue? " branch)))
+          (apply orig-fun args)
+        (user-error "Push aborted"))))
 
   (dolist (fn '(magit-push-current-to-pushremote
+                magit-push-current-to-upstream
                 magit-push-current
-                magit-push))
+                magit-push-other))
     (advice-add fn :around #'my/magit-confirm-push-to-main)))
 
 (use-package markdown-mode
